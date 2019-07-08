@@ -10,8 +10,13 @@
     <meta name="author" content="{{ if .Params.authors }}{{ .Params.authors }}{{ else if .Site.Params.Author }}{{.Site.Params.Author}}{{ end }}">
     <meta name="keywords" content="{{ if .Keywords }}{{ delimit .Keywords ", " }}{{ end }}">
 
-
-    <title>{{ .Title }} -- {{ .Site.Title }}</title>
+    <title>
+      {{- if .IsHome -}}
+        {{ .Site.Title }}
+      {{- else -}}
+        {{ .Title }} - {{ .Site.Title }}
+      {{- end -}}
+    </title>
 
     {{ if .RSSLink }}
     <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
